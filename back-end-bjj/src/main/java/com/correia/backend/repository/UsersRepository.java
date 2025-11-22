@@ -4,10 +4,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.correia.backend.model.Users;
+import com.correia.backend.model.User;
 
-public interface UsersRepository extends JpaRepository<Users, Long> {
+public interface UsersRepository extends JpaRepository<User, Long> {
 
-	Optional<Users> findByName(String name);
-	Optional<Users> findByEmail(String email);
+	Optional<User> findByName(String name);
+	Optional<User> findByEmail(String email);
 }

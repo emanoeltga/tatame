@@ -1,51 +1,38 @@
 package com.correia.backend.infra.config;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneOffset;
+import java.util.stream.Collectors;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.oauth2.jwt.JwtClaimsSet;
+import org.springframework.security.oauth2.jwt.JwtEncoder;
+import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
-
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTCreationException;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.correia.backend.model.Users;
 
 @Service
 public class TokenService {
-    @Value("${api.security.token.secret}")
-    private String secret;
-    public String generateToken(Users user){
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
 
-            String token = JWT.create()
-                    .withIssuer("login-auth-api")
-                    .withSubject(user.getEmail())
-                    .withExpiresAt(this.generateExpirationDate())
-                    .sign(algorithm);
-            return token;
-        } catch (JWTCreationException exception){
-            throw new RuntimeException("Error while authenticating");
-        }
+    @Autowired
+    private JwtEncoder jwtEncoder;
+
+    public String generateJwt(Authentication auth){
+
+        Instant now = Instant.now();
+
+        String scope = auth.getAuthorities().stream()
+                .map(GrantedAuthority::getAuthority)
+                .collect(Collectors.joining(" "));
+
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("self")
+                .issuedAt(now)
+                .subject(auth.getName())
+                .claim("roles", scope)
+                .build();
+
+        return jwtEncoder.encode(JwtEncoderParameters.from(claims)).getTokenValue();
     }
 
-    public String validateToken(String token){
-        try {
-            Algorithm algorithm = Algorithm.HMAC256(secret);
-            return JWT.require(algorithm)
-                    .withIssuer("login-auth-api")
-                    .build()
-                    .verify(token)
-                    .getSubject();
-        } catch (JWTVerificationException exception) {
-            return null;
-        }
-    }
-
-    private Instant generateExpirationDate(){
-        return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
-    }
 }

@@ -1,0 +1,40 @@
+api:
+  security:
+    token:
+      secret:${JWT_SECRET:my-secret-key}
+
+spring:
+  application:
+    name:Academia
+  datasource:
+  # URL de conex�o com MySQL
+    url: jdbc:mysql://localhost:3306/academia?createDatabaseIfNotExist=true
+    # Driver opcional (Spring Boot detecta automaticamente)
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: master
+  jpa:
+    show-sql: true
+    hibernate:
+    # Esta � a chave correta para criar as tabelas
+      ddl-auto: update
+    properties:
+      hibernate:
+        # Dialeto para MySQL
+        dialect: org.hibernate.dialect.MySQLDialect
+# Stripe configura��es
+#stripe:
+  #secret-key: linda51NiZKsLtTFoBOb8wTg4V2C3bJqrQ53qMHLusPXct6hp0O3yNtHXfEITKl7bLHNPRG7Egk28A5d1X7H4yoCvUl5kF00OP3VpgCr
+# (Opcional) Logging para ver SQL e DDL do Hibernate
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type.descriptor.sql: trace
+    org.hibernate.tool.hbm2ddl: debug
+# Swagger
+springdoc:
+  #swagger-ui:
+    #enabled: false
+    ##persist-authorization: true
+  api-docs:
+    enabled: true
