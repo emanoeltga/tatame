@@ -1,11 +1,21 @@
 # Back-end - Java com Spring Boot
 
-## Build
-
-npm clean complile
+Cadastros:
+ - Alunos, Professores, Disciplinas, Turmas, Academias
+ - Campionatos
+    - Chaves
+    - Atletas
+    - Academias
+Ranking
+ - Alunos, Turmas, Academias
 
 # Front-end - Angular
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Formularios de cadastros:
+ - Alunos, Professores, Disciplinas, Turmas, Academias
+Visualização dos Ranking:
+ - Alunos, Turmas, Academias
+Visualização dos Campionatos
+ - Chaves
+ - Atletas
+ - Academias
