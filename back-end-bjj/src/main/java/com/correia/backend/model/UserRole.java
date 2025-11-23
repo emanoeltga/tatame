@@ -21,7 +21,9 @@ public class UserRole implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="role_id")
     private Long id;
-    private String authority;
+	
+	@Column(unique = true, nullable = false, length = 50)
+    private String authority; // ex: ADMIN, USER
     
     public UserRole(){
         super();

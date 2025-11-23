@@ -38,7 +38,7 @@ public class AuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public User register(String email, String password) {
+    public User register(String name,String email, String password) {
         String encodedPassword = passwordEncoder.encode(password);
 
         UserRole userRole = userRoleRepository.findByAuthority("USER").get();
@@ -46,7 +46,7 @@ public class AuthenticationService {
 
         authorities.add(userRole);
 
-        return userRepository.save(new User(email, encodedPassword, authorities));
+        return userRepository.save(new User(name, email, encodedPassword, authorities));
     }
 
     public UserLoginDto login(String email, String password) {

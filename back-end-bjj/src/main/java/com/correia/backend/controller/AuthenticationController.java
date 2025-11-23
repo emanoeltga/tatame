@@ -28,7 +28,7 @@ public class AuthenticationController {
             throw new AppException("All fields are required.", HttpStatus.BAD_REQUEST);
         }
 
-        return authenticationService.register(user.email(), user.password());
+        return authenticationService.register(user.name(),user.email(), user.password());
     }
 
     @PostMapping("/login")

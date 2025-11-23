@@ -22,15 +22,20 @@ spring:
       hibernate:
         # Dialeto para MySQL
         dialect: org.hibernate.dialect.MySQLDialect
-# Stripe configura��es
+  main:
+    banner-mode: console
+#Stripe configura��es
 #stripe:
   #secret-key: linda51NiZKsLtTFoBOb8wTg4V2C3bJqrQ53qMHLusPXct6hp0O3yNtHXfEITKl7bLHNPRG7Egk28A5d1X7H4yoCvUl5kF00OP3VpgCr
 # (Opcional) Logging para ver SQL e DDL do Hibernate
 logging:
   level:
-    org.hibernate.SQL: debug
-    org.hibernate.type.descriptor.sql: trace
-    org.hibernate.tool.hbm2ddl: debug
+    root: INFO
+    org:
+      hibernate.SQL: debug
+      hibernate.type.descriptor.sql.BasicBinder: trace
+      hibernate.tool.hbm2ddl: debug
+      springframework: INFO
 # Swagger
 springdoc:
   #swagger-ui:

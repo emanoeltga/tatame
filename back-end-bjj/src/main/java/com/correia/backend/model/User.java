@@ -69,8 +69,9 @@ public class User implements UserDetails {
         authorities = new HashSet<>();
     }
 
-    public User(String email, String password, Set<UserRole> authorities) {
+    public User(String name,String email, String password, Set<UserRole> authorities) {
         super();
+        this.name=name;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
