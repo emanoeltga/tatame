@@ -2,7 +2,7 @@
 
 Cadastros:
  - Alunos, Professores, Disciplinas, Turmas, Academias
- - Campionatos
+ - Campeonatos
     - Chaves
     - Atletas
     - Academias
@@ -11,11 +11,11 @@ Ranking
 
 # Front-end - Angular
 
-Formularios de cadastros:
+Formulários de cadastros:
  - Alunos, Professores, Disciplinas, Turmas, Academias
 Visualização dos Ranking:
  - Alunos, Turmas, Academias
-Visualização dos Campionatos
+Visualização dos Campeonatos
  - Chaves
  - Atletas
  - Academias

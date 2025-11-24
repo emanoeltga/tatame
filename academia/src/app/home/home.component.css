@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  height: 100%;
+}
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0b3d91;
+  color: #fff;
+  padding: 0.75rem 1rem;
+}
+.brand {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+.menu {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.menu-item {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.menu-item:hover {
+  text-decoration: underline;
+}
+.content {
+  flex: 1;
+  padding: 1rem;
+  background: #f5f7fb;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+.card {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}

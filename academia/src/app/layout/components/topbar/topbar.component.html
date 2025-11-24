@@ -1,0 +1,22 @@
+<header class="topbar">
+  <div class="brand">BJJ - MT</div>
+  <nav class="menu">
+    <a routerLink="/home">Home</a>
+    <a routerLink="/cadastros">Cadastros</a>
+    <a routerLink="/eventos">Eventos</a>
+    <a routerLink="/academias">Academias</a>
+    <a routerLink="/sobre">Sobre</a>
+  </nav>
+
+  <div class="user-menu" [class.open]="open">
+    <button class="user-btn" (click)="toggle()">
+      <span class="avatar">{{ userName ? (userName | slice:0:1) : 'E' }}</span>
+      <span class="name">{{ userName ?? 'Entre' }}</span>
+      <span class="caret">▾</span>
+    </button>
+    <ul class="dropdown" *ngIf="open">
+      <li class="dropdown-item user-info">{{ userName ?? 'Entre' }}</li>
+      <li class="dropdown-item" (click)="logout()">Sair</li>
+    </ul>
+  </div>
+</header>

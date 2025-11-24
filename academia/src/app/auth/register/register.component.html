@@ -1,0 +1,45 @@
+<div class="register-container">
+  <h2>Registrar</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="field">
+      <label for="name">Nome</label>
+      <input id="name" type="text" formControlName="name"
+        [class.invalid]="form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty)" />
+      <div *ngIf="form.controls['name'].invalid && (form.controls['name'].touched || form.controls['name'].dirty)"
+        class="error">
+        <div *ngIf="form.controls['name'].errors?.['required']">Nome é obrigatório.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email"
+        [class.invalid]="form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty)" />
+      <div *ngIf="form.controls['email'].invalid && (form.controls['email'].touched || form.controls['email'].dirty)"
+        class="error">
+        <div *ngIf="form.controls['email'].errors?.['required']">Email é obrigatório.</div>
+        <div *ngIf="form.controls['email'].errors?.['email']">Formato de email inválido.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="password">Senha</label>
+      <input id="password" type="password" formControlName="password"
+        [class.invalid]="form.controls['password'].invalid && (form.controls['password'].touched || form.controls['password'].dirty)" />
+      <div
+        *ngIf="form.controls['password'].invalid && (form.controls['password'].touched || form.controls['password'].dirty)"
+        class="error">
+        <div *ngIf="form.controls['password'].errors?.['required']">Senha é obrigatória.</div>
+        <div *ngIf="form.controls['password'].errors?.['minlength']">A senha precisa ter ao menos 6 caracteres.</div>
+      </div>
+    </div>
+
+    <div *ngIf="error" class="error">{{ error }}</div>
+
+    <button type="submit" [disabled]="loading || form.invalid">{{ loading ? 'Registrando...' : 'Registrar' }}</button>
+  </form>
+
+  <p>
+    Já tem conta? <a routerLink="/auth/login">Entrar</a>
+  </p>
+</div>

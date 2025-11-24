@@ -77,6 +77,7 @@ public class SecurityConfig {
                 	
                     // Endpoints públicos para login e registro
                     auth.requestMatchers("/api/v1/auth/**").permitAll();
+                   
 
                     // Endpoints administrativos
                     auth.requestMatchers("/api/v1/admin/**").hasRole("ADMIN");
